@@ -32,9 +32,7 @@ Whether you're catching up with friends or starting a new conversation, NovaChat
 ---
 
 ## 📸 Screenshots
-
-_Add screenshots of NovaChat here._
-
+<img width="764" height="233" alt="image" src="https://github.com/user-attachments/assets/2ef25bb8-dacc-4ab8-96fe-5682c386b2d8" />
 ---
 
 ## ⚙️ Getting Started
