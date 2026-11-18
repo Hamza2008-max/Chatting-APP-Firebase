@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid && newData.child('uid').val() === auth.uid && newData.child('email').val() === auth.token.email",
+        ".validate": "newData.hasChildren(['name', 'email', 'uid', 'createdAt']) && newData.child('name').isString() && newData.child('email').isString() && newData.child('uid').isString() && newData.child('createdAt').isNumber()"
+      }
+    },
+    "userDirectory": {
+      "$emailKey": {
+        ".read": "auth != null",
+        ".write": "auth != null && newData.child('uid').val() === auth.uid && newData.child('email').val() === auth.token.email",
+        ".validate": "newData.hasChildren(['email', 'uid']) && newData.child('email').isString() && newData.child('uid').isString()"
+      }
+    }
+  }
+}
