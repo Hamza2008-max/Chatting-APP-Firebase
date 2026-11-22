@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "users": {
+      ".read": "auth != null",
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid",
+        ".validate": "newData.hasChildren(['uid', 'name', 'email']) && newData.child('uid').val() === $uid && newData.child('name').isString() && newData.child('email').isString()"
+      }
+    },
+    "chats": {
+      "$uid1": {
+        "$uid2": {
+          ".read": "auth != null && (auth.uid === $uid1 || auth.uid === $uid2)",
+          "messages": {
+            "$messageId": {
+              ".write": "auth != null && (auth.uid === $uid1 || auth.uid === $uid2) && newData.child('senderId').val() === auth.uid && ((auth.uid === $uid1 && newData.child('receiverId').val() === $uid2) || (auth.uid === $uid2 && newData.child('receiverId').val() === $uid1))",
+              ".validate": "newData.hasChildren(['senderId', 'receiverId', 'text', 'timestamp']) && newData.child('text').isString() && newData.child('text').val().length > 0 && newData.child('text').val().length <= 2000 && newData.child('timestamp').isNumber()"
+            }
+          }
+        }
+      }
+    }
+  }
+}
